@@ -29,8 +29,14 @@ class BinarySearchTree:
             return False
         if self.value == target:
             return True
-        elif self.value <= value:
-            current
+        if self.value <= target:
+            if self.right is None:
+                return False
+            return self.right.contains(target)
+        elif self.value > target:
+            if self.left is None:
+                return False
+            return self.right.contains(target)
 
     def get_max(self):
         pass
