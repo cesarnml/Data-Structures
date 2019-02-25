@@ -44,9 +44,12 @@ class BinarySearchTree:
             return self.right.contains(target)
 
     def get_max(self):
+        # Empty BST case
         if self.value is None:
             return None
+        # If current_node.right is None; no greater value exist; return current_node.value
         if self.right is None:
             return self.value
         else:
+            # Else recursively search right branches to find maximum value
             return self.right.get_max()
