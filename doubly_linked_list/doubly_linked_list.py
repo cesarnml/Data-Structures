@@ -48,13 +48,12 @@ class DoublyLinkedList:
         self.tail = node
 
     def add_to_head(self, value):
-    """
-    Two cases:
-    1. There is a head node. Call insert_before on current head.
-        Set new head to point to self.head.prev
-    2. There is no head. List is empty. Set head and tail to new ListNode.
-    """
-       if self.head:
+
+        # Two cases:
+        # 1. There is a head node. Call insert_before on current head.
+        #    Set new head to point to self.head.prev
+        # 2. There is no head. List is empty. Set head and tail to new ListNode.
+        if self.head:
             self.head.insert_before(value)
             self.head = self.head.prev
         else:
@@ -62,13 +61,12 @@ class DoublyLinkedList:
             self.tail = self.head
 
     def remove_from_head(self):
-    """
-    Two cases:
-    1. There is a head. new_head = self.head.next. Save current head value in temp.
-        .delete the current head. If the list is now empty, set tail to None.
-    2. There is no head. Nothing to do. Return None to indicate no work done.
-    """
-       if self.head:
+
+        # Two cases:
+        # 1. There is a head. new_head = self.head.next. Save current head value in temp.
+        #    .delete the current head. If the list is now empty, set tail to None.
+        # 2. There is no head. Nothing to do. Return None to indicate no work done.
+        if self.head:
             new_head = self.head.next
             temp = self.head.value
             self.head.delete()
