@@ -5,8 +5,9 @@ class Heap:
     # Add value to the end of array.
     # Then use _bubble_up to move value to correct index
     def insert(self, value):
+        last = len(self.storage) - 1
         self.storage.append(value)
-        self._bubble_up(len(self.storage) - 1)
+        self._bubble_up(last)
 
     # Store max_value
     # Copy last element into first index
@@ -15,12 +16,13 @@ class Heap:
     # correct position for new top value
     # Return deleted value
     def delete(self):
-        deleted = self.storage[0]
-        self.storage[0] = self.storage[len(self.storage) - 1]
-        del self.storage[len(self.storage) - 1]
+        last = len(self.storage) - 1
+        max_value = self.storage[0]
+        self.storage[0] = self.storage[last]
+        del self.storage[last]
         if len(self.storage):
             self._sift_down(0)
-        return deleted
+        return max_value
 
     # max_value always at index 0
     def get_max(self):
@@ -31,21 +33,27 @@ class Heap:
         return len(self.storage)
 
     def _bubble_up(self, index):
+
         while (index - 1) // 2 >= 0:
-            if self.storage[(index - 1) // 2] < self.storage[index]:
-                self.storage[(
-                    index - 1) // 2], self.storage[index] = self.storage[index], self.storage[(index - 1) // 2]
-            index = (index - 1) // 2
+            parent = (index - 1) // 2
+            if self.storage[parent] < self.storage[index]:
+                self.storage[parent], self.storage[index] = self.storage[index], self.storage[parent]
+            index = parent
 
     def _sift_down(self, index):
-        while index * 2 + 1 <= len(self.storage) - 1:
-            if index * 2 + 2 > len(self.storage) - 1:
-                maximum = index * 2 + 1
-            elif self.storage[index * 2 + 1] > self.storage[index * 2 + 2]:
-                maximum = index * 2 + 1
+        last = len(self.storage) - 1
+        while index * 2 + 1 <= last:
+            left_child = index * 2 + 1
+            right_child = index * 2 + 2
+            if index * 2 + 2 > last:
+                max_child = left_child
             else:
-                maximum = index * 2 + 2
-
-        if self.storage[maximum] > self.storage[index]:
-            self.storage[maximum], self.storage[index] = self.storage[index], self.storage[maximum]
-        index = maximum
+                if self.storage[left_child] > self.storage[right_child]:
+                    max_child = left_child
+                else:
+                    max_child = right_child
+            if self.storage[index] < self.storage[max_child]:
+                self.storage[index], self.storage[max_child] = self.storage[max_child], self.storage[index]
+                index = max_child
+            else:
+                break
