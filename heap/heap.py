@@ -14,12 +14,12 @@ class Heap:
     # Delete last element
     # If the array isn't empty; call _sift_down to find
     # correct position for new top value
-    # Return deleted value
+    # Return deleted max_value
     def delete(self):
         last = len(self.storage) - 1
         max_value = self.storage[0]
         self.storage[0] = self.storage[last]
-        del self.storage[last]
+        self.storage.pop()
         if len(self.storage):
             self._sift_down(0)
         return max_value
@@ -32,20 +32,32 @@ class Heap:
     def get_size(self):
         return len(self.storage)
 
-    def _bubble_up(self, index):
+    # While there is a parent index,
+    # Check if parent value < index value
+    # If yes => swap items ... set new index = parent index ... iterate up one level
+    # If no => breakout of while loop, item in proper position
 
+    def _bubble_up(self, index):
         while (index - 1) // 2 >= 0:
             parent = (index - 1) // 2
             if self.storage[parent] < self.storage[index]:
                 self.storage[parent], self.storage[index] = self.storage[index], self.storage[parent]
-            index = parent
+                index = parent
+            else:
+                break
 
+    # While there is still a child_index in the array for current parent index
+    # If right_child index > last, no right_child exist; left_child must be maximum value
+    # Otherwise, index has two children => check which is greater
+    # max_child => set to biggest child index
+    # If value at max_child > value at index => swap and set new index = max_child => iterate one level down
+    # Otherwise, value at index in correct position break out of while loop.
     def _sift_down(self, index):
         last = len(self.storage) - 1
         while index * 2 + 1 <= last:
             left_child = index * 2 + 1
             right_child = index * 2 + 2
-            if index * 2 + 2 > last:
+            if right_child > last:
                 max_child = left_child
             else:
                 if self.storage[left_child] > self.storage[right_child]:
