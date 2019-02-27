@@ -1,4 +1,4 @@
-import unittest
+mpoimport unittest
 from unittest.mock import MagicMock
 from heap import Heap
 
