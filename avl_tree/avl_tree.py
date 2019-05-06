@@ -25,8 +25,8 @@ class AVLTree:
         self.balance = 0
 
     """
-  Display the whole tree. Uses recursive def.
-  """
+    Display the whole tree. Uses recursive def.
+    """
 
     def display(self, level=0, pref=''):
         self.update_heights()  # Update height before balancing
@@ -40,52 +40,52 @@ class AVLTree:
                 self.node.right.display(level + 1, '>')
 
     """
-  Computes the maximum number of levels there are
-  in the tree
-  """
+    Computes the maximum number of levels there are
+    in the tree
+    """
 
     def update_height(self):
         pass
 
     """
-  Updates the balance factor on the AVLTree class
-  """
+    Updates the balance factor on the AVLTree class
+    """
 
     def update_balance(self):
         pass
 
     """
-  Perform a left rotation, making the right child of this
-  node the parent and making the old parent the left child
-  of the new parent. 
-  """
+    Perform a left rotation, making the right child of this
+    node the parent and making the old parent the left child
+    of the new parent.
+    """
 
     def _left_rotate(self):
         pass
 
     """
-  Perform a right rotation, making the left child of this
-  node the parent and making the old parent the right child
-  of the new parent. 
-  """
+    Perform a right rotation, making the left child of this
+    node the parent and making the old parent the right child
+    of the new parent.
+    """
 
     def _right_rotate(self):
         pass
 
     """
-  Sets in motion the rebalancing logic to ensure the
-  tree is balanced such that the balance factor is
-  1 or -1
-  """
+    Sets in motion the rebalancing logic to ensure the
+    tree is balanced such that the balance factor is
+    1 or -1
+    """
 
     def rebalance(self):
         pass
 
     """
-  Uses the same insertion logic as a binary search tree
-  after the value is inserted, we need to check to see
-  if we need to rebalance
-  """
+    Uses the same insertion logic as a binary search tree
+    after the value is inserted, we need to check to see
+    if we need to rebalance
+    """
 
     def insert(self, key):
         pass
